@@ -1,0 +1,78 @@
+---
+title: "Stats3106_Project3"
+author: "Mae"
+date: "4/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+
+# Data 
+getwd()
+
+old_data <- read.csv("overall_company_df.csv")
+
+
+```
+
+```{r}
+
+# April 18 
+
+# New data set 
+data <- read.csv("Proj3_most_recent_data.csv")
+
+# Correlation matrix plot between all vars 
+
+image(z=cor(data, use="pairwise.complete.obs"), main="Feature Correlation Matrix")
+
+
+```
+
+
+
+
+
+```{r}
+
+# Regressions 
+
+
+# Reg 1: rank and avg_polarity 
+reg1 <- lm(data$rank ~ data$avg_polarity)
+summary(reg1)
+
+# Reg 2: rank and industry --
+reg2 <- lm(data$rank ~ data$Industry)
+summary(reg2)
+
+# Reg 3: rank and industry and avg_polarity -- 
+reg3 <- lm(data$rank ~ data$Industry + data$avg_polarity)
+summary(reg3)
+
+# Reg 4: rank and 3 polarity vars -- 
+reg4 <- lm(data$rank ~ data$avg_polarity + data$avg_news_polarity + data$avg_twit_polarity)
+summary(reg4)
+
+# Reg 5: rank and 2 subjectivity vars 
+reg5 <- lm(data$rank ~ data$avg_twit_subjectivity + data$avg_news_subjectivity)
+summary(reg5)
+
+
+table(data$Industry)
+table(data$Sector)
+
+```
+
+
+```{r}
+
+
+
+```
